@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .shop{
+            background-color: #0765158c;
+        padding: 6px;
+        border-radius: 4px;
+        }
+        .product {
+            padding: 0 40px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card:hover .product-image {
+            /* Additional styles for the image on hover */
+            opacity: 0.8;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <%- include('header') %>
+
+    <section class="product" id="product">
+        <h1 class="section-title text-3xl font-bold tracking-tighter sm:text-5xl">Sustainable living</h1>
+        <div class="product-grid">
+            <% items.forEach(item=> { %>
+                <div class="product-card">
+                    <a href="<%= item.sl_link %>" style="text-decoration: none;display: inline;">
+                        <img src="<%= item.sl_image %>" alt="<%= item.sl_title %>" class="product-image">
+                        <div class="product-info">
+                            <div class="product-name">
+                                <%= item.sl_title %>
+                            </div>
+                            <div class="product-price">₹<%= item.sl_price %>
+                            </div>
+                    </a>
+                    <div class="button">
+                        <button class="cart-btn" data-id="<%= item.id %>" data-name="<%= item.sl_title %>"
+                            data-price="<%= item.sl_price %>" data-image="<%= item.sl_image %>">Add to Cart</button>
+                    </div>
+                </div>
+
+        </div>
+        <% }) %>
+            </div>
+
+            <h1 class="section-title text-3xl font-bold tracking-tighter sm:text-5xl">Sustainable fashion</h1>
+            <div class="product-grid">
+                <% items.forEach(item=> { %>
+                    <div class="product-card">
+                        <a href="<%= item.sf_link %>" style="text-decoration: none;display: inline;">
+                            <img src="<%= item.sf_image %>" alt="<%= item.sf_title %>" class="product-image">
+                            <div class="product-info">
+                                <div class="product-name">
+                                    <%= item.sf_title %>
+                                </div>
+                                <div class="product-price">₹<%= item.sf_price %>
+                                </div>
+                        </a>
+                        <div class="button">
+                            <button class="cart-btn" data-id="<%= item.id %>" data-name="<%= item.sf_title %>"
+                                data-price="<%= item.sf_price %>" data-image="<%= item.sf_image %>">Add to
+                                Cart</button>
+                        </div>
+                    </div>
+
+            </div>
+            <% }) %>
+                </div>
+    </section>
+    <%- include('footer') %>
+</body>
+</html>

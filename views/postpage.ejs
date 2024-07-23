@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The way forward for sustainable waste management</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+     
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .logo {
+        font-weight: bold;
+        font-size: 24px;
+      }
+      nav a {
+        margin-left: 15px;
+        text-decoration: none;
+        color: #333;
+      }
+      .search-bar {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      h1 {
+        font-size: 28px;
+        margin-top: 30px;
+      }
+      .author {
+        color: #666;
+        margin-bottom: 20px;
+      }
+      .main-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+      p {
+        margin-bottom: 20px;
+      }
+      .article-image {
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+      }
+      .related-articles {
+        margin-top: 40px;
+      }
+      .related-article {
+        display: flex;
+        margin-bottom: 20px;
+      }
+      .related-article img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 15px;
+      }
+      .related-article-info {
+        flex-grow: 1;
+      }
+      .related-article-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .related-article-date {
+        color: #666;
+        font-size: 14px;
+      }
+      .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+      }
+      .logo-img{
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back">
+       <button id="back" >Back</button>
+    </div>
+    <div class="logo">
+    <a href=""><img src="https://firebasestorage.googleapis.com/v0/b/greenlander-c8556.appspot.com/o/logo-icon.png?alt=media&token=7ee18bf1-5432-452b-8c2d-9eb5668bdc8e" class="logo-img" alt="logo"></a>
+    </div>
+
+    <main>
+      <% if (post) { %>
+          <article class="post">
+            <p>By <Span>Green Living</Span></p>
+            <span><a href="">Home</a> > <a href=""><%= post.title %></a></span>
+              <h1><%= post.title %></h1>
+              <div class="preloader" style="color: crimson;font-weight: 700;">Loading...</div>
+              <img src="<%= post.imageUrl %>" loading="lazy" id="imge" alt="<%= post.title %>">
+              <p><%= post.des %></p>
+              <img src="<%= post.img1 %>" loading="lazy"id="imge" alt="<%= post.title %>">
+              <h2><%= post.title2 %></h2>
+              <img src="<%= post.img2 %>"loading="lazy" id="imge" alt="<%= post.title %>">
+              <p><%= post.des2 %></p>
+              <img src="<%= post.img3 %>"loading="lazy"id="imge" alt="">
+              <img src="<%= post.img4 %>"loading="lazy"id="imge" alt="">
+              <img src="<%= post.img5 %>" loading="lazy" id="imge"alt="">
+          </article>
+      <% } else { %>
+          <p>Post not found.</p>
+      <% } %>
+  </main>
+
+    
+    <script>
+      document.getElementById('back').addEventListener('click', function() {
+          window.location.href = '/home';
+      });
+
+ 
+const image = document.getElementById('imge');
+const preloader = document.getElementById('preloader');
+
+image.onload = function() {
+  preloader.style.display = 'none'; // Hide preloader once image loads
+};
+
+image.onerror = function() {
+  // Display a placeholder image or message
+  image.src = 'placeholder.jpg'; // Replace with your placeholder image path
+  // preloader.textContent = 'Error loading image'; // Optionally display an error message
+};
+
+// Optionally, load the image only when it's about to be displayed (using Intersection Observer API)
+// This requires additional code and browser compatibility checks.
+
+  </script>
+  </body>
+</html>

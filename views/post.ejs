@@ -1,0 +1,19 @@
+<section class="management" id="management">
+    <h1>Waste Management Blogs</h1>
+    <div class="articles-container">
+        <% if (blogs && blogs.length > 0) { %>
+            <% blogs.forEach(function(blog) { %>
+                <div class="article-card">
+                    <img src="<%= blog.imageUrl %>" alt="<%= blog.title %>">
+                    <div class="article-content">
+                        <h2><%= blog.title %></h2>
+                        <p><%= blog.des %></p>
+                        <button class="read-more">Read More</button>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No blogs found.</p>
+        <% } %>
+    </div>
+</section>

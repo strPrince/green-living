@@ -60,7 +60,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const db = require('./db');
+const db = require('./config/db');
 const session = require('express-session');
 const passport = require('passport');
 const authRoutes = require('./routes/auth');
@@ -68,7 +68,6 @@ const indexRoutes = require('./routes/index');
 const eventRoutes = require('./routes/event');
 const postRoutes = require('./routes/post');
 const homeRoutes = require('./routes/home');
-const adminRoutes = require('./routes/admin');
 const Item = require('./models/item'); 
 const Events = require('./models/event');
 const items = require('./models/item');
@@ -96,7 +95,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/admin', require('./routes/admin'));
+
 app.set('views', path.join(__dirname, 'views'));
 
 // Passport Configuration
@@ -109,7 +108,6 @@ app.use('/auth', authRoutes);
 app.use('/', postRoutes);
 app.use('/', eventRoutes);
 app.use('/',itemRoutes)
-app.use('/',adminRoutes)
 // Routes
 app.get('/login', (req, res) => res.render('login'));
 app.get('/signup', (req, res) => res.render('signup'));

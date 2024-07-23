@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: white;
+        }
+        .top {
+            display: flex;
+            flex-direction: row;
+
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-family: "Nunito", sans-serif;
+        }
+
+        .logo img {
+            width: 70px;
+            height: 70px;
+            margin-right: 0.5rem;
+        }
+
+        nav {
+            width: 70vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-family: "Nunito", sans-serif;
+            font-weight: 500;
+            font-size: larger;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-actions>p {
+            display: flex;
+            gap: 1rem;
+            width: fit-content;
+            background-color: #3d7a4ab9;
+            border-radius: 6px;
+            padding: 10px;
+            color: #010f06;
+        }
+
+        .login-btn {
+            background-color: #e8f2eb;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+            }
+
+            .logo>img {
+                width: 100px;
+                height: 100px;
+            }
+
+            nav {
+                width: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            nav ul {
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+
+                margin-top: 20px;
+            }
+
+            .user-actions {
+                margin-top: 1rem;
+                display: flex;
+
+            }
+
+            .logo-txt {
+                display: none;
+            }
+
+            
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+
+        }
+
+        .dropdown-toggle {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: first baseline;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 20px 20px 10px 10px;
+        }
+
+        .dropdown-menu p {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dark-mode {
+            background: #222;
+            color: #e6e6e6;
+        }
+
+        .dark-mode .login-container {
+            background: rgba(34, 34, 34, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .dark-mode input[type="email"],
+        .dark-mode input[type="password"] {
+            background: #333;
+            color: #e6e6e6;
+            border-color: #444;
+        }
+
+        .dark-mode button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .cart-btn {
+            height: fit-content;
+            background-color: #e8f2eb;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+
+        .cartbtn {
+
+
+            cursor: pointer;
+        }
+
+        .cartbtn img {
+            width: 40px;
+            height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="logo">
+                <img src="https://firebasestorage.googleapis.com/v0/b/greenlander-c8556.appspot.com/o/logo-icon.png?alt=media&token=7ee18bf1-5432-452b-8c2d-9eb5668bdc8e"
+                    alt="Green Living Logo">
+                <span class="logo-txt">Green Living</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/shop" class="shop">Shop</a></li>
+                    <li><a href="/about" class="about">About</a></li>
+                    <li><a class="learn" href="/blog" >Learn</a></li>
+                    <li><a href="/event" class="event">Get Involved</a></li>
+                </ul>
+            </nav>
+        </div>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+        <div class="user-actions">
+            <% if (user) { %>
+                <div class="dropdown">
+                    <button
+                        class=" dropdown-toggle inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2">
+                        <%= user.username %>
+                    </button>
+                    <div class="dropdown-menu">
+                        <p>Email: <%= user.email %>
+                        </p>
+                        <p>Username: <%= user.username %>
+                        </p>
+                        <a href="/auth/logout">Logout</a>
+                    </div>
+                </div>
+
+                <button class="cartbtn" id="cartButton">
+                    <img src="https://cdn-icons-png.freepik.com/256/17123/17123527.png?ga=GA1.1.190826024.1720511253&semt=ais_hybrid"
+                        alt="Shopping Cart">
+                </button>
+
+                <% } else { %>
+                    <a href="login"> <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                            Log in
+                        </button></a>
+                    <button
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2">
+                        Guest!
+                    </button>
+                    <% } %>
+        </div>
+    </header>
+    <script>
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        dropdownToggle.addEventListener('click', function () {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+        
+
+    </script>
+</body>
+</html>
